@@ -117,11 +117,13 @@ const GenreList = () => {
           <BiLeftArrowCircle
             className="absolute top-[9rem] -left-12 cursor-pointer"
             size={"2.2rem"}
+            color={"gray"}
             onClick={leftClicked}
           />
           <BiRightArrowCircle
             className="absolute top-[9rem] -right-12 cursor-pointer"
             size={"2.2rem"}
+            color={"gray"}
             onClick={rightClicked}
           />
           <h2 className="mb-3 text-[1.4rem] font-semibold">Genre</h2>

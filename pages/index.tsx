@@ -1,13 +1,41 @@
 import axios from "axios";
 import { GetStaticProps, InferGetServerSidePropsType } from "next";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useRef, useState } from "react";
 import GenreList from "../Components/Home/GenreList";
 import NavBar from "../Components/Home/NavBar";
 import Slider from "../Components/Slider";
+import Context from "../Context/Context";
 
 const Home = ({ recentCompletedAnimeDatas, topAnimeDatas }) => {
+  const Ref1Ctx = useRef(useContext(Context));
+  const Ref2Ctx = useRef(useContext(Context));
+  const Router = useRouter();
   const [search, setSearch] = useState("");
   const [searchAnimeDatas, setSearchAnimeDatas] = useState("");
+
+  useEffect(() => {
+
+    const onLoad = async () => {
+      try {
+        const UserCheck = await axios.get("http://localhost:3000/api/verifyuser", {
+          headers: {
+            authorization: `Bearer ${window.localStorage.getItem(
+              "ArimeAccessToken"
+            )}`,
+          }
+        })
+        Ref1Ctx.current.setIsLogged(UserCheck.data.isValid);
+        Ref2Ctx.current.setFavs([...UserCheck.data.User.favs]);
+
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    onLoad();
+
+  }, [Router]);
 
   const searchAnimeDatasFn = async (data) => {
     try {
@@ -123,6 +151,8 @@ export const getStaticProps: GetStaticProps = async () => {
       query: queryTopAnime,
       variables: { page: 1, perPage: 20 },
     });
+
+
 
     return {
       props: {

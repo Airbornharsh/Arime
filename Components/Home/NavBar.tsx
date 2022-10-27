@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
+import Context from "../../Context/Context";
 
 const NavBar = ({ searchAnimeDatasFn }) => {
   const [search, setSearch] = useState("");
+  const [barVisible, setBarVisible] = useState(false);
+  const Ctx = useContext(Context);
 
   const router = useRouter();
 
@@ -13,6 +16,10 @@ const NavBar = ({ searchAnimeDatasFn }) => {
 
     searchAnimeDatasFn(search);
   };
+
+  const ToggleEntry = () => {
+    setBarVisible(!barVisible);
+  }
 
   return (
     <div className="h-[3rem] w-screen bg-black flex justify-between px-6 py-4 items-center">
@@ -34,17 +41,29 @@ const NavBar = ({ searchAnimeDatasFn }) => {
           <BiSearchAlt2 />
         </button>
       </form>
-      <div className="w-8 h-8 bg-red-500 rounded-[50%] relative">
-        <ul className="absolute right-0 top-8">
-          <li
-            className="w-[10rem] h-9 flex justify-center items-center bg-slate-300 cursor-pointer"
-            onClick={() => {
-              router.push("/login", "/login", { shallow: true });
-            }}
-          >
-            Sign In
-          </li>
-        </ul>
+      <div className="w-8 h-8 bg-red-500 rounded-[50%] relative" onMouseEnter={ToggleEntry} onMouseLeave={ToggleEntry}>
+        {barVisible &&
+          <div>
+            {Ctx.isLogged ? <ul className="absolute right-0 top-5">
+              <li
+                className="w-[10rem] h-9 flex justify-center items-center bg-slate-300 cursor-pointer"
+                onClick={() => {
+                  router.push("/fav", "/fav", { shallow: true });
+                }}
+              >
+                Your Favourites
+              </li>
+            </ul> : <ul className="absolute right-0 top-5">
+              <li
+                className="w-[10rem] h-9 flex justify-center items-center bg-slate-300 cursor-pointer"
+                onClick={() => {
+                  router.push("/login", "/login", { shallow: true });
+                }}
+              >
+                Login In
+              </li>
+            </ul>}
+          </div>}
       </div>
     </div>
   );
