@@ -43,7 +43,7 @@ const AnimeCard = (props) => {
   const AddFavourites = async () => {
 
     try {
-      const res = await axios.post("http://localhost:3000/api/addfav", {
+      const res = await axios.post("https://arime.vercel.app/api/addfav", {
         animeId: props.id,
       }, {
         headers: {

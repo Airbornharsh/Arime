@@ -9,6 +9,7 @@ import Slider from "../Components/Slider";
 import Context from "../Context/Context";
 
 const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
+  
   const Ref1Ctx = useRef(useContext(Context));
   const Ref2Ctx = useRef(useContext(Context));
   const Router = useRouter();
@@ -19,7 +20,7 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
 
     const onLoad = async () => {
       try {
-        const UserCheck = await axios.get("http://localhost:3000/api/verifyuser", {
+        const UserCheck = await axios.get(`https://arime.vercel.app/api/verifyuser`, {
           headers: {
             authorization: `Bearer ${window.localStorage.getItem(
               "ArimeAccessToken"

@@ -24,7 +24,7 @@ const Login = () => {
     // UtilCtx.setLoader(true);
 
     try {
-      const res = await axios.post(`http://localhost:3000/api/register`, {
+      const res = await axios.post(`https://arime.vercel.app/api/register`, {
         name,
         emailId,
         password,
@@ -45,7 +45,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:3000/api/register/verify`,
+        `https://arime.vercel.app/api/register/verify`,
         {
           accessToken,
           otp,
