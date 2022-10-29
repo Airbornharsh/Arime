@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_app.js", "pages/api/login.js", "pages/api/register.js", "pages/api/register.js", "pages/api/login.js", "pages/api/login.js", "pages/api/login.js", "pages/login.tsx", "Context/ContextProvider.jsx", "pages/api/verifyuser.js", "pages/api/addfav.js", "pages/api/register/verify.ts"  ],
+, "pages/_app.tsx", "pages/api/login.js", "pages/api/register.js", "pages/api/register.js", "pages/api/login.js", "pages/api/login.js", "pages/api/login.js", "pages/login.tsx", "Context/ContextProvider.jsx", "pages/api/verifyuser.js", "pages/api/addfav.js", "pages/api/register/verify.ts", "pages/fav.ts"  ],
   "exclude": [
     "node_modules"
   ]

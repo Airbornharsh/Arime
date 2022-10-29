@@ -4,29 +4,15 @@ import GenreDatas from "../../Utils/Datas/GenreDatas";
 import { BiLeftArrowCircle, BiRightArrowCircle } from "react-icons/bi";
 import Slider from "../Slider";
 import axios from "axios";
+import { GetStaticProps } from "next";
+import Link from "next/link";
 
-const GenreList = () => {
+const GenreList = ({ genreData }) => {
   const [index, setIndex] = useState(0);
   const [number, setNumber] = useState(6);
   const [transformData, setTransformData] = useState(0);
-  const [genreRenderDatas, setGenreRenderDatas] = useState(0);
+  const [genreRenderDatas, setGenreRenderDatas] = useState(genreData);
   const [genreName, setGenreName] = useState("adventure");
-
-  const leftClicked = () => {
-    if (index > 0) {
-      setIndex(index - 1);
-      setNumber(number - 1);
-      setTransformData(transformData + 15);
-    }
-  };
-
-  const rightClicked = () => {
-    if (index < GenreDatas.length - 1) {
-      setIndex(index + 1);
-      setNumber(number + 1);
-      setTransformData(transformData - 15);
-    }
-  };
 
   useEffect(() => {
     const onLoad = async () => {
@@ -114,27 +100,11 @@ const GenreList = () => {
             "w-screen max-w-[80rem] mt-16 relative flex flex-col items-center"
           }
         >
-          <BiLeftArrowCircle
-            className="absolute top-[9rem] -left-12 cursor-pointer"
-            size={"2.2rem"}
-            color={"gray"}
-            onClick={leftClicked}
-          />
-          <BiRightArrowCircle
-            className="absolute top-[9rem] -right-12 cursor-pointer"
-            size={"2.2rem"}
-            color={"gray"}
-            onClick={rightClicked}
-          />
           <h2 className="mb-3 text-[1.4rem] font-semibold">Genre</h2>
           <div className="overflow-hidden max-w-[80rem]">
             <div className="overflow-scroll cursor-grab">
               <ul
                 className="flex"
-                style={{
-                  transform: `translateX(${transformData}rem)`,
-                  transition: "0.3s ease-out ",
-                }}
               >
                 {GenreDatas.slice(index, number).map((GenreData, index) => {
                   return (
@@ -152,7 +122,18 @@ const GenreList = () => {
           </div>
         </div>
       )}
+
+      <Link href={`/genre`}>
+        <span className="mt-8 p-3 bg-[#575858] flex justify-center items-center cursor-pointer" >
+          <h2 className=" text-[0.9rem] font-semibold text-white">See More Genres</h2>
+        </span>
+      </Link>
       <Slider Datas={genreRenderDatas} heading={genreName} />
+      <Link href={`/genre/${genreName}`}>
+        <span className="mt-8 p-3 bg-[#575858] flex justify-center items-center cursor-pointer" >
+          <h2 className=" text-[0.9rem] font-semibold text-white">See More {genreName.toUpperCase()} Genre</h2>
+        </span>
+      </Link>
     </>
   );
 };

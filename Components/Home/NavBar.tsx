@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import Context from "../../Context/Context";
 
-const NavBar = ({ searchAnimeDatasFn }) => {
+const NavBar = ({ searchAnimeDatasFn, isSearch }) => {
   const [search, setSearch] = useState("");
   const [barVisible, setBarVisible] = useState(false);
   const Ctx = useContext(Context);
@@ -24,7 +24,7 @@ const NavBar = ({ searchAnimeDatasFn }) => {
   return (
     <div className="h-[3rem] w-screen bg-black flex justify-between px-6 py-4 items-center">
       <h1 className="text-white">ARIME</h1>
-      <form className="flex">
+      {isSearch && <form className="flex">
         <input
           type={"text"}
           value={search}
@@ -40,7 +40,7 @@ const NavBar = ({ searchAnimeDatasFn }) => {
         >
           <BiSearchAlt2 />
         </button>
-      </form>
+      </form>}
       <div className="w-8 h-8 bg-red-500 rounded-[50%] relative" onMouseEnter={ToggleEntry} onMouseLeave={ToggleEntry}>
         {barVisible &&
           <div>
