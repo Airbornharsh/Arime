@@ -60,13 +60,13 @@ const GenreList = ({ }) => {
     )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+// export const getStaticPaths: GetStaticPaths = async () => {
 
-    return {
-        paths: [{ params: { genreName: "adventure" } }],
-        fallback: false
-    }
-}
+//     return {
+//         paths: [{ params: { genreName: "adventure" } }],
+//         fallback: false
+//     }
+// }
 
 // export const getStaticProps: GetStaticProps = async (path) => {
 //     console.log(path);
