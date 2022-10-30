@@ -7,9 +7,9 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        max700: {max: "700px"},
-      }
+        max700: { max: "700px" },
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
