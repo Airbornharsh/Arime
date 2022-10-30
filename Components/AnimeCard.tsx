@@ -76,8 +76,8 @@ const AnimeCard = (props) => {
               objectFit={"cover"}
             />
             {isVisible && (
-              <span className="min-w-[10rem] absolute z-10 bottom-0 flex justify-center items-center left-[50%] translate-x-[-50%] h-48  bg-gradient-to-b from-transparent to-[#00000056]">
-                <button className="p-1 h-7 bg-white text-[0.8rem] w-[6rem] rounded absolute bottom-3" onClick={() => {
+              <span className="min-w-40 absolute z-10 bottom-0 flex justify-center items-center left-[50%] translate-x-[-50%] h-48  bg-gradient-to-b from-transparent to-[#00000056]">
+                <button className="p-1 h-7 bg-white text-[0.8rem] w-24 rounded absolute bottom-3" onClick={() => {
                   AddFavourites();
                 }}>
                   Add Favourite
