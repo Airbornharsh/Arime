@@ -31,7 +31,7 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
         Ref2Ctx.current.setFavs([...UserCheck.data.User.favs]);
 
       } catch (e) {
-        console.log(e);
+        console.log(e); 
       }
     }
 

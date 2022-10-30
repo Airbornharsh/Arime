@@ -85,7 +85,7 @@ const AnimeCard = (props) => {
               </span>
             )}
           </span>
-          <h3 className="text-[rgba(255,255,255,0.8)] text-[0.8rem] text-center font-semibold w-[8rem]">
+          <h3 className="text-white opacity-90 text-[0.8rem] text-center font-semibold w-[8rem]">
             {props.titleEnglish ? props.titleEnglish : props.titleRomaji}
           </h3>
         </div>
