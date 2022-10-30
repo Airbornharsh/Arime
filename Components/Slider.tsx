@@ -8,7 +8,7 @@ const RecentCompletedAnime = ({ Datas, heading }) => {
     <>
       {Datas && (
         <div className="w-[90vw] max-w-[80rem] mt-16 relative flex flex-col items-center ">
-          <h2 className="mb-3 text-[1.4rem] font-semibold text-white">
+          <h2 className="mb-3 text-2xl font-semibold text-white">
             {heading}
           </h2>
           <ul

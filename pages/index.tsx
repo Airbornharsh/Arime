@@ -9,7 +9,7 @@ import Slider from "../Components/Slider";
 import Context from "../Context/Context";
 
 const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
-  
+
   const Ref1Ctx = useRef(useContext(Context));
   const Ref2Ctx = useRef(useContext(Context));
   const Router = useRouter();
@@ -31,7 +31,7 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
         Ref2Ctx.current.setFavs([...UserCheck.data.User.favs]);
 
       } catch (e) {
-        console.log(e); 
+        console.log(e);
       }
     }
 
@@ -93,7 +93,8 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
       />
       <Link href={"/recentanime"}>
         <span className="mt-8 p-3 bg-[#575858] flex justify-center items-center cursor-pointer" >
-          <h2 className=" text-[0.9rem] font-semibold text-white">See All Recent Anime</h2>
+          <h2 className=" text-[0.9rem] font-semibold text-white">See All Recent Anime
+          </h2>
         </span>
       </Link>
       <Slider Datas={topAnimeDatas} heading={"Top Anime"} />
