@@ -3,13 +3,13 @@ import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
 import GenreList from "../Components/Home/GenreList";
 import NavBar from "../Components/Home/NavBar";
 import Slider from "../Components/Slider";
 import Context from "../Context/Context";
 
 const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
-
   const Ref1Ctx = useRef(useContext(Context));
   const Ref2Ctx = useRef(useContext(Context));
   const Router = useRouter();
@@ -17,26 +17,26 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
   const [searchAnimeDatas, setSearchAnimeDatas] = useState("");
 
   useEffect(() => {
-
     const onLoad = async () => {
       try {
-        const UserCheck = await axios.get(`https://arime.vercel.app/api/verifyuser`, {
-          headers: {
-            authorization: `Bearer ${window.localStorage.getItem(
-              "ArimeAccessToken"
-            )}`,
+        const UserCheck = await axios.get(
+          `https://arime.vercel.app/api/verifyuser`,
+          {
+            headers: {
+              authorization: `Bearer ${window.localStorage.getItem(
+                "ArimeAccessToken"
+              )}`,
+            },
           }
-        })
+        );
         Ref1Ctx.current.setIsLogged(UserCheck.data.isValid);
         Ref2Ctx.current.setFavs([...UserCheck.data.User.favs]);
-
       } catch (e) {
         console.log(e);
       }
-    }
+    };
 
     onLoad();
-
   }, []);
 
   const searchAnimeDatasFn = async (data) => {
@@ -80,7 +80,65 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
 
   return (
     <div className="flex flex-col items-center w-screen min-h-screen pb-10 bg-zinc-900">
-      <NavBar searchAnimeDatasFn={searchAnimeDatasFn} isSearch={true} />
+      {/* <NavBar searchAnimeDatasFn={searchAnimeDatasFn} isSearch={true} /> */}
+      <div className="flex items-center justify-between w-screen h-12 px-6 py-4 bg-black">
+        <h1 className="text-white">ARIME</h1>
+        {true && (
+          <form className="flex">
+            <input
+              type={"text"}
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              placeholder={"Search Your Anime"}
+              className={"h-[2rem] w-[20rem] px-2"}
+            />
+            <button
+              className="flex items-center justify-center px-2 bg-gray-200 h-[2rem]"
+              onClick={(e) => {
+                e.preventDefault();
+                searchAnimeDatasFn(search);
+              }}
+            >
+              <BiSearchAlt2 />
+            </button>
+          </form>
+        )}
+        <div
+          className="w-8 h-8 bg-red-500 rounded-[50%] relative"
+          // onMouseEnter={ToggleEntry}
+          // onMouseLeave={ToggleEntry)
+        >
+          {false && (
+            <div>
+              {Ctx.isLogged ? (
+                <ul className="absolute right-0 top-5">
+                  <li
+                    className="w-[10rem] h-9 flex justify-center items-center bg-slate-300 cursor-pointer"
+                    onClick={() => {
+                      router.push("/fav", "/fav", { shallow: true });
+                    }}
+                  >
+                    Your Favourites
+                  </li>
+                </ul>
+              ) : (
+                <ul className="absolute right-0 top-5">
+                  <li
+                    className="w-[10rem] h-9 flex justify-center items-center bg-slate-300 cursor-pointer"
+                    onClick={() => {
+                      router.push("/login", "/login", { shallow: true });
+                    }}
+                  >
+                    Login In
+                  </li>
+                </ul>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
       {search && (
         <Slider
           Datas={searchAnimeDatas}
@@ -92,14 +150,15 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
         heading={"Recently Completed Anime"}
       />
       <Link href={"/recentanime"}>
-        <span className="mt-8 p-3 bg-[#575858] flex justify-center items-center cursor-pointer" >
-          <h2 className=" text-[0.9rem] font-semibold text-white">See All Recent Anime
+        <span className="mt-8 p-3 bg-[#575858] flex justify-center items-center cursor-pointer">
+          <h2 className=" text-[0.9rem] font-semibold text-white">
+            See All Recent Anime
           </h2>
         </span>
       </Link>
       <Slider Datas={topAnimeDatas} heading={"Top Anime"} />
       <Link href={"/topanime"}>
-        <span className="mt-8 p-3 bg-[#575858] flex justify-center items-center cursor-pointer" >
+        <span className="mt-8 p-3 bg-[#575858] flex justify-center items-center cursor-pointer">
           <h2 className=" text-[0.9rem] font-semibold text-white">Top Anime</h2>
         </span>
       </Link>
