@@ -15,7 +15,7 @@ const TopAnime = ({ topAnimeDatas }) => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
     const queryTopAnime = `
     query ($page: Int,$perPage: Int) {
       Page(page: $page,perPage: $perPage) {

@@ -79,7 +79,7 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
   };
 
   return (
-    <div className="flex flex-col items-center w-screen pb-10 bg-zinc-900 min-h-screen">
+    <div className="flex flex-col items-center w-screen min-h-screen pb-10 bg-zinc-900">
       <NavBar searchAnimeDatasFn={searchAnimeDatasFn} isSearch={true} />
       {search && (
         <Slider
@@ -108,7 +108,7 @@ const Home = ({ recentCompletedAnimeDatas, topAnimeDatas, genreData }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   try {
     const queryRecentCompletedAnime = `
       query ($page: Int,$perPage: Int) {

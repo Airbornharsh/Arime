@@ -17,7 +17,7 @@ const RecentAnime = ({ recentCompletedAnimeDatas }) => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
     const queryRecentCompletedAnime = `
     query ($page: Int,$perPage: Int) {
         Page(page: $page,perPage: $perPage) {
