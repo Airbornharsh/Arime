@@ -22,7 +22,7 @@ const NavBar = ({ searchAnimeDatasFn, isSearch }) => {
   }
 
   return (
-    <div className="h-[3rem] w-screen bg-black flex justify-between px-6 py-4 items-center">
+    <div className="flex items-center justify-between w-screen h-12 px-6 py-4 bg-black">
       <h1 className="text-white">ARIME</h1>
       {isSearch && <form className="flex">
         <input
